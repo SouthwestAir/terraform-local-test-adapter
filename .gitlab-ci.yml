@@ -1,0 +1,27 @@
+# variables:
+#   # If you want to test the module from staging release you can set
+#   # the following var to release the module from an MR pipeline.
+#   MODULE_STAGING_ENABLED: 'true'
+#   # If you don't want to use a pinned version of general resources
+#   # Cached version will be used for the same CI_COMMIT_SHORT_SHA instead of fetching latest
+#   # New pipelines with new commits will always fetch latest version point in time and cache it for subsequent pipelines and reruns
+#   # Defaults to "true" for pipelines
+#   GENERAL_RESOURCES_CACHING_ENABLED: false
+#   # ***WARNING***: You have to get exemption from CloudSec (Slack channel: #team-cloudsecurity)
+#   # to suppress any vulnerabilities.
+#   #
+#   # Showing how you can suppress a rule. Checkov will still show you the errors but will exit with 0
+#   # As a result pipeline will show green.
+#   #
+#   # Default is `--quiet --support --download-external-modules true --soft-fail-on MEDIUM`.
+#   #
+#   # Use this only when you have exceptions from CloudSec for checks that cannot be resolved.
+#   #
+#   # Check https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html for checkov options
+#   OPTS_CHECKOV_IAC_SCAN: --quiet --support --download-external-modules true --soft-fail-on MEDIUM,CKV_AWS_26,CKV_AWS_169,CKV_AWS_283
+
+include:
+  - project: swa-common/devplat/ccp-next/ccp-next-pipeline-fragments
+    # Always use latest: https://southwest.gitlab-dedicated.com/swa-common/devplat/ccp-next/ccp-next-pipeline-fragments/-/releases
+    ref: 0.26.0
+    file: pipelines/build-module.gitlab-ci.yml

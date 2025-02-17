@@ -1,0 +1,26 @@
+root = true
+
+[*]
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{html,js,jsx,md,rst,toml,ts,xml,yml,yaml}]
+indent_size = 2
+
+[*.py]
+charset = utf-8
+
+[*.rst]
+indent_size = 2
+
+[*.{tf,tfvars}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[{cdk,package,package-lock,tsconfig,tslint}.json]
+indent_size = 2

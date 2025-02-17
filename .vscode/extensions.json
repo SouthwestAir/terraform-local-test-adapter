@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "hashicorp.terraform",
+        "editorconfig.editorconfig",
+        "DavidAnson.vscode-markdownlint",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "tamasfe.even-better-toml"
+    ]
+}

@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "ccp-next-module-template"
+version = "0.5.0"
+authors = ["Enterprise Cloud <EC-CloudCommonPod-DG@wnco.com>"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.9",
+]
+description = "Example TF module that creates an SNS topic"
+homepage = "https://southwest.gitlab-dedicated.com/swa-common/devplat/ccp-next/ccp-next-templates/ccp-next-module-template"
+package-mode = false
+readme = "README.md"
+repository = "https://southwest.gitlab-dedicated.com/swa-common/devplat/ccp-next/ccp-next-templates/ccp-next-module-template"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+checkov = "^3.2.352"
+pre-commit = "^4.0.1"
+
+[[tool.poetry.source]]
+name = "swa-pypi"
+priority = "primary"
+url = "https://nexus-tools.swacorp.com/repository/pypi/simple"
+
+[[tool.poetry.source]]
+name = "swa-releases"
+priority = "supplemental"
+url = "https://nexus-tools.swacorp.com/repository/pypi-releases/simple"
+
+[tool.tomlsort]
+all = true
+in_place = true
+sort_first = ["tool", "tool.poetry"]
+spaces_before_inline_comment = 2
+trailing_comma_inline_array = true
+overrides."tool.poetry".first = ["name", "version"]
+overrides."tool.poetry.dependencies".first = ["python"]
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]

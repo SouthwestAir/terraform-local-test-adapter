@@ -1,0 +1,25 @@
+{
+    "[makefile]": {
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": false,
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4
+    },
+    "[terraform-vars]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
+    },
+    "[terraform]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
+    },
+    "cSpell.enabled": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.trimAutoWhitespace": true,
+    "files.insertFinalNewline": true,
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "terraform.languageServer.enable": true
+}

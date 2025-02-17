@@ -1,0 +1,16 @@
+**.terraform.lock.hcl
+**.terraform/
+**.tool-versions
+**plan-checkov.json
+**plan.out
+.general-resources
+.general-resources.mk
+.python-version
+.venv/
+__pycache__
+examples/README.md
+jest.json
+jest.log
+node_modules/
+pytest.json
+pytest.log
