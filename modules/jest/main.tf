@@ -1,39 +1,33 @@
-data "aws_region" "current" {}
 locals {
-  jest_opts = "--json --outputFile=./jest.json ${var.working_dir}"
+  log_folder        = abspath(path.module)
+  default_jest_opts = "--ci --reporters=default --reporters=jest-junit --json --outputFile=${local.log_folder}/jest.json --roots ${var.working_dir}"
 }
 resource "null_resource" "run_jest" {
   provisioner "local-exec" {
-    environment = var.env_vars
+    environment = merge({ JEST_JUNIT_OUTPUT_NAME = var.junit_xml_file }, var.env_vars)
     working_dir = var.working_dir
     command     = <<EOT
-      npx jest ${local.jest_opts} 2>&1 | tee ./jest.log
+      rm -f ${local.log_folder}/jest.json;
+      rm -f ${local.log_folder}/jest.log;
+      npx jest ${local.default_jest_opts} 2>&1 | tee ${local.log_folder}/jest.log
     EOT
   }
 }
 
+
 data "local_file" "jest_log" {
   depends_on = [null_resource.run_jest]
-  filename   = "${var.working_dir}/jest.log"
+  filename   = "${local.log_folder}/jest.log"
 }
 data "local_file" "jest_json" {
   depends_on = [null_resource.run_jest]
-  filename   = "${var.working_dir}/jest.json"
+  filename   = "${local.log_folder}/jest.json"
 }
 
-locals {
-  all_assertions = flatten([
-    jsondecode(data.local_file.jest_json.content).testResults[*].assertionResults
-  ])
-}
-
-output "failed_tests" {
-  value = [for assertion in local.all_assertions : assertion if assertion.status != "passed"]
-}
-output "passed_tests" {
-  value = [for assertion in local.all_assertions : assertion if assertion.status == "passed"]
-}
-
-output "log" {
-  value = data.local_file.jest_log.content
+resource "local_file" "jest_asserts" {
+  depends_on = [null_resource.run_jest]
+  filename   = "${local.log_folder}/_jest_asserts.json"
+  content = jsonencode(flatten([
+    try(jsondecode(data.local_file.jest_json.content).testResults[*].assertionResults, [])
+  ]))
 }

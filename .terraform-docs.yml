@@ -5,7 +5,9 @@ output:
   mode: inject
 
 recursive:
-  enabled: false
+  enabled: true
+  path: modules
+  include-main: true
 
 
 sort:

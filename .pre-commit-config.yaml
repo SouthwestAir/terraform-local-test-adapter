@@ -70,7 +70,3 @@ repos:
     hooks:
       - id: terraform-docs-go
         args: [./]
-      - id: terraform-docs-go
-        args: [./examples]
-      - id: terraform-docs-go
-        args: [./local]

@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "ccp-next-module-template"
-version = "0.5.0"
-authors = ["Enterprise Cloud <EC-CloudCommonPod-DG@wnco.com>"]
+name = "terraform-x-adapter"
+version = "1.0.0"
+authors = ["SouthwestAir"]
 classifiers = [
   "Intended Audience :: Developers",
   "Natural Language :: English",
@@ -11,28 +11,24 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.9",
 ]
-description = "Example TF module that creates an SNS topic"
-homepage = "https://southwest.gitlab-dedicated.com/swa-common/devplat/ccp-next/ccp-next-templates/ccp-next-module-template"
+description = "A Terraform module that provides a unified interface for running different test frameworks within Terraform test."
+homepage = "https://github.com/SouthwestAir/terraform-x-adapter/"
 package-mode = false
 readme = "README.md"
-repository = "https://southwest.gitlab-dedicated.com/swa-common/devplat/ccp-next/ccp-next-templates/ccp-next-module-template"
+repository = "https://github.com/SouthwestAir/terraform-x-adapter/"
 
 [tool.poetry.dependencies]
 python = "^3.9"
+pytest = "^8.3.5"
+pytest-json-report = "^1.5.0"
 
 [tool.poetry.group.dev.dependencies]
-checkov = "^3.2.352"
-pre-commit = "^4.0.1"
-
-[[tool.poetry.source]]
-name = "swa-pypi"
-priority = "primary"
-url = "https://nexus-tools.swacorp.com/repository/pypi/simple"
-
-[[tool.poetry.source]]
-name = "swa-releases"
-priority = "supplemental"
-url = "https://nexus-tools.swacorp.com/repository/pypi-releases/simple"
+furo = "^2024.1.29"  # Sphinx theme we are using
+myst-parser = "^2.0.0"  # markdown support for Sphinx
+pre-commit = "^4.1.0"
+sphinx = "^7.2.6"
+sphinx-autobuild = "^2024.2.4"  # utility that provides automated rebuilding and browser reloading
+sphinx-copybutton = "^0.5.2"
 
 [tool.tomlsort]
 all = true

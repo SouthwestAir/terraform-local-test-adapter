@@ -1,12 +1,12 @@
 output "failed_tests" {
-  value = coalesce(one(module.jest[*].failed_tests), one(module.pytest[*].failed_tests))
+  description = "All failed tests"
+  value       = try(module.jest[0], module.pytest[0], module.k6[0]).failed_tests
 }
-
 output "log" {
-  value = coalesce(one(module.jest[*].log), one(module.pytest[*].log))
-
+  description = "Log file contents"
+  value       = try(module.jest[0], module.pytest[0], module.k6[0]).log
 }
 output "passed_tests" {
-  value = coalesce(one(module.jest[*].passed_tests), one(module.pytest[*].passed_tests))
-
+  description = "All passed tests"
+  value       = try(module.jest[0], module.pytest[0], module.k6[0]).passed_tests
 }
