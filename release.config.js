@@ -14,14 +14,13 @@ const commitAnalyzerConfig = [
   },
 ]
 
-const execGetVersion = 'if [[ "$CI_COMMIT_REF_PROTECTED" != "true" && -n "$CI_COMMIT_SHORT_SHA" ]]; then VERSION=${nextRelease.version}+$CI_COMMIT_SHORT_SHA; else VERSION=${nextRelease.version}; fi'
-const execSetVersionNpm = "npm version $VERSION --allow-same-version --no-git-tag-version";
-const execSetVersionPoetry = "poetry version $VERSION";
-const execSetVersionLegacyTxtFile = "echo $VERSION > nextversion.txt";
+const execSetVersionNpm = "npm version ${nextRelease.version} --allow-same-version --no-git-tag-version";
+const execSetVersionPoetry = "poetry version ${nextRelease.version}";
+
 const execConfig = [
   "@semantic-release/exec",
   {
-    verifyReleaseCmd: `${execGetVersion} && ${execSetVersionNpm} && ${execSetVersionLegacyTxtFile} && ${execSetVersionPoetry}`
+    verifyReleaseCmd: `${execSetVersionNpm} && ${execSetVersionPoetry}`
   },
 ]
 
