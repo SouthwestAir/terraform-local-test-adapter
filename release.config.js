@@ -6,7 +6,7 @@ const commitAnalyzerConfig = [
     releaseRules: [ // https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular
       { type: "chore", release: false }, // "chore:" commit message prefix
       { type: "ci", release: false }, // "ci:" commit message prefix
-      { type: "docs", release: false }, // "docs:" commit message prefix
+      { type: "docs", release: 'patch' }, // "docs:" commit message prefix
       { type: "refactor", release: false }, // "refactor:" commit message prefix
       { type: "style", release: false }, // "style:" commit message prefix
       { type: "test", release: false }, // "test:" commit message prefix
