@@ -15,12 +15,11 @@ const commitAnalyzerConfig = [
 ]
 
 const execSetVersionNpm = "npm version ${nextRelease.version} --allow-same-version --no-git-tag-version";
-const execSetVersionPoetry = "poetry version ${nextRelease.version}";
 
 const execConfig = [
   "@semantic-release/exec",
   {
-    verifyReleaseCmd: `${execSetVersionNpm} && ${execSetVersionPoetry}`
+    verifyReleaseCmd: `${execSetVersionNpm}`
   },
 ]
 
