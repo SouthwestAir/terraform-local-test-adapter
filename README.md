@@ -18,7 +18,7 @@ A Terraform module that provides a unified interface for running different test 
 
 ## How it works
 
-![x](https://github.com/SouthwestAir/terraform-local-test-adapter/raw/main/docs/source/diagram.png)
+![x](https://raw.githubusercontent.com/SouthwestAir/terraform-local-test-adapter/main/docs/source/diagram.png)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
