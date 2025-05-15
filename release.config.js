@@ -27,12 +27,11 @@ const execConfig = [
 
 const releaseNotesGeneratorConfig = "@semantic-release/release-notes-generator"
 
-const gitlabConfig = [
-  "@semantic-release/gitlab",
+const githubConfig = [
+  "@semantic-release/github",
   {
     failComment: false,
     failTitle: false,
-    gitlabUrl: process.env.CI_SERVER_URL,
     successComment: false,
   },
 ]
@@ -62,7 +61,7 @@ module.exports = {
     execConfig,
     releaseNotesGeneratorConfig,
     gitConfig,
-    gitlabConfig,
+    githubConfig,
   ],
   tagFormat: "${version}",
 };
