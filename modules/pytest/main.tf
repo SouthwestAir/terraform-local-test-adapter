@@ -3,7 +3,28 @@ locals {
   log_file    = "${abspath(path.module)}/pytest.log"
   pytest_cmd  = var.use_poetry ? "poetry run pytest" : "pytest"
 }
+resource "null_resource" "install_poetry_deps" {
+  count = var.install_poetry_deps ? 1 : 0
+
+  provisioner "local-exec" {
+    command     = "poetry install"
+    working_dir = path.module
+  }
+}
+resource "null_resource" "check_pytest_deps" {
+  count = var.install_poetry_deps ? 0 : 1
+
+  provisioner "local-exec" {
+    command = <<EOT
+      python3 -c "import pytest" 2>/dev/null || (echo 'pytest not found. Set install_poetry_deps = true or run poetry install.' && exit 1)
+    EOT
+  }
+}
 resource "null_resource" "run_pytest" {
+  depends_on = [
+    null_resource.install_poetry_deps,
+    null_resource.check_pytest_deps
+  ]
   triggers = {
     always_run = timestamp()
   }
@@ -18,6 +39,7 @@ resource "null_resource" "run_pytest" {
 
 }
 
+
 data "local_file" "pytest_output" {
   depends_on = [null_resource.run_pytest]
   filename   = "${path.module}/pytest.json"
@@ -25,12 +47,4 @@ data "local_file" "pytest_output" {
 data "local_file" "pytest_log" {
   depends_on = [null_resource.run_pytest]
   filename   = "${path.module}/pytest.log"
-}
-resource "null_resource" "install_poetry_deps" {
-  count = var.install_poetry_deps ? 1 : 0
-
-  provisioner "local-exec" {
-    command     = "poetry install"
-    working_dir = path.module
-  }
 }
