@@ -24,3 +24,17 @@ variable "framework" {
     error_message = "Can be one of: jest, pytest, k6, \"\""
   }
 }
+variable "use_poetry" {
+  type        = bool
+  description = "Use poetry run"
+  default     = false
+}
+variable "install_poetry_deps" {
+  description = "Install Python dependencies at runtime using Poetry if not already installed"
+  type        = bool
+  default     = false
+  validation {
+    condition     = var.install_poetry_deps ? var.use_poetry : true
+    error_message = "If install_poetry_deps is true than use poetry should also be true"
+  }
+}
