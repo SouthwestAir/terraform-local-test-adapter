@@ -8,7 +8,7 @@ A Terraform module that provides a unified interface for running different test 
 - Pytest (Python) 🐍
 - k6 (Performance Testing) ⏩
 
-[See examples](https://southwest.gitlab-dedicated.com/csr/learning/terraform-x-runner/-/tree/master/examples?ref_type=heads)
+[See examples](https://github.com/SouthwestAir/terraform-local-test-adapter/tree/main/examples)
 
 ## Features
 
