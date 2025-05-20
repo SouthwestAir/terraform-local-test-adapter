@@ -17,7 +17,7 @@ jobs:
       - name: terraform test
         id: test
         run: |
-          terraform init && terraform test -junit-xml=junit.xml
+          terraform init && terraform test -junit-xml=junit.xml -verbose
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
