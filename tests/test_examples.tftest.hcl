@@ -68,6 +68,7 @@ run "pytest_failure" {
   command = apply
   variables {
     working_dir = "./tests/pytest_failure"
+    use_poetry          = true
   }
   expect_failures = [
     check.failures
