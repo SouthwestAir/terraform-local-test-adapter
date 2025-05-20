@@ -35,6 +35,9 @@ run "pytest" {
   module {
     source = "./examples/pytest"
   }
+  variables {
+    use_poetry = true
+  }
   assert {
     condition     = length(module.this.failed_tests) == 0
     error_message = module.this.log
@@ -44,19 +47,7 @@ run "pytest" {
     error_message = module.this.log
   }
 }
-run "pytest_poetry" {
-  command = apply
-  module {
-    source = "./examples/pytest"
-  }
-  variables {
-    use_poetry = true
-  }
-  assert {
-    condition     = length(module.this.failed_tests) == 0
-    error_message = module.this.log
-  }
-}
+
 run "pytest_install_deps" {
   command = apply
   module {
