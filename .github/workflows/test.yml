@@ -1,0 +1,26 @@
+name: Terraform
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  terraform:
+    name: terraform CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+
+      - name: terraform test
+        id: test
+        run: |
+          terraform init && terraform test -junit-xml=junit.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-junit-report
+          path: junit.xml
