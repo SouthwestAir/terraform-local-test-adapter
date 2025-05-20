@@ -2,7 +2,9 @@ variables {
   junit_xml_file = "junit_1.xml"
 
 }
-
+test {
+  parallel = true
+}
 run "jest" {
   command = apply
   module {
