@@ -13,19 +13,9 @@ resource "null_resource" "install_poetry_deps" {
   }
 }
 
-resource "null_resource" "check_pytest_deps" {
-  count = var.install_poetry_deps ? 0 : 1
-
-  provisioner "local-exec" {
-    command = <<EOT
-      python3 -c "import pytest" 2>/dev/null || (echo 'pytest not found. Set install_poetry_deps = true or run poetry install.' && exit 1)
-    EOT
-  }
-}
 resource "null_resource" "run_pytest" {
   depends_on = [
     null_resource.install_poetry_deps,
-    null_resource.check_pytest_deps
   ]
   triggers = {
     always_run = timestamp()

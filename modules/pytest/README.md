@@ -24,7 +24,6 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [null_resource.check_pytest_deps](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [null_resource.install_poetry_deps](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [null_resource.run_pytest](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [local_file.pytest_log](https://registry.terraform.io/providers/hashicorp/local/latest/docs/data-sources/file) | data source |
