@@ -3,14 +3,16 @@ locals {
   log_file    = "${abspath(path.module)}/pytest.log"
   pytest_cmd  = var.use_poetry ? "poetry run pytest" : "pytest"
 }
+
 resource "null_resource" "install_poetry_deps" {
   count = var.install_poetry_deps ? 1 : 0
 
   provisioner "local-exec" {
-    command     = "poetry install"
+    command     = "command -v poetry >/dev/null 2>&1 && poetry install || pip install -r requirements.txt"
     working_dir = path.module
   }
 }
+
 resource "null_resource" "check_pytest_deps" {
   count = var.install_poetry_deps ? 0 : 1
 
