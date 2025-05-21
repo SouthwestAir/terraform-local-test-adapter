@@ -28,7 +28,7 @@ run "pytest_install_deps" {
 }
 run "pytest_failure" {
   variables {
-    working_dir = "./tests/pytest_failure"
+    working_dir = "./tests/pytest_failure"0
     use_poetry          = true
   }
   expect_failures = [
