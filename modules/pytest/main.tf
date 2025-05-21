@@ -1,6 +1,6 @@
 locals {
   pytest_opts = "--junitxml=${var.junit_xml_file} --json-report --json-report-file=${abspath(path.module)}/pytest.json"
-  log_file    = "${abspath(path.module)}/pytest.log"
+  log_file    = "${abspath(var.working_dir)}/pytest.log"
   pytest_cmd  = var.use_poetry ? "poetry run pytest" : "pytest"
 }
 

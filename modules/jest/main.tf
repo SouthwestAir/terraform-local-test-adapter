@@ -1,5 +1,5 @@
 locals {
-  log_folder        = abspath(path.root)
+  log_folder        = abspath(var.working_dir)
   default_jest_opts = "--ci --reporters=default --reporters=jest-junit --json --outputFile=${local.log_folder}/jest.json --roots ${var.working_dir}"
 }
 resource "null_resource" "run_jest" {
