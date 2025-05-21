@@ -1,6 +1,7 @@
 locals {
   pytest_opts = "--junitxml=${var.junit_xml_file} --json-report --json-report-file=${abspath(path.module)}/pytest.json"
-  log_file    = "${abspath(var.working_dir)}/pytest.log"
+  log_folder  = abspath(var.working_dir)
+  log_file    = "${local.log_folder}/pytest.log"
   pytest_cmd  = var.use_poetry ? "poetry run pytest" : "pytest"
 }
 
@@ -34,9 +35,9 @@ resource "null_resource" "run_pytest" {
 
 data "local_file" "pytest_output" {
   depends_on = [null_resource.run_pytest]
-  filename   = "${path.module}/pytest.json"
+  filename   = "${local.log_folder}/pytest.json"
 }
 data "local_file" "pytest_log" {
   depends_on = [null_resource.run_pytest]
-  filename   = "${path.module}/pytest.log"
+  filename   = "${local.log_folder}/pytest.log"
 }
