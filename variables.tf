@@ -29,12 +29,8 @@ variable "use_poetry" {
   description = "Use poetry run"
   default     = false
 }
-variable "install_poetry_deps" {
-  description = "Install Python dependencies at runtime using Poetry if not already installed"
+variable "install_python_deps" {
+  description = "Install Python dependencies at runtime using Poetry/pip if not already installed"
   type        = bool
   default     = false
-  validation {
-    condition     = var.install_poetry_deps ? var.use_poetry : true
-    error_message = "If install_poetry_deps is true than use poetry should also be true"
-  }
 }

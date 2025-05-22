@@ -1,29 +1,22 @@
 locals {
-  pytest_opts = "--junitxml=${var.junit_xml_file} --json-report --json-report-file=${abspath(path.module)}/pytest.json"
-  log_file    = "${abspath(path.module)}/pytest.log"
+  pytest_opts = "--junitxml=${var.junit_xml_file} --json-report --json-report-file=${local.log_folder}/pytest.json"
+  log_folder  = abspath(var.working_dir)
+  log_file    = "${local.log_folder}/pytest.log"
   pytest_cmd  = var.use_poetry ? "poetry run pytest" : "pytest"
 }
-resource "null_resource" "install_poetry_deps" {
-  count = var.install_poetry_deps ? 1 : 0
+
+resource "null_resource" "install_python_deps" {
+  count = var.install_python_deps ? 1 : 0
 
   provisioner "local-exec" {
-    command     = "poetry install"
+    command     = var.use_poetry ? "poetry install" : "pip install -r ${abspath(path.module)}/requirements.txt"
     working_dir = path.module
   }
 }
-resource "null_resource" "check_pytest_deps" {
-  count = var.install_poetry_deps ? 0 : 1
 
-  provisioner "local-exec" {
-    command = <<EOT
-      python3 -c "import pytest" 2>/dev/null || (echo 'pytest not found. Set install_poetry_deps = true or run poetry install.' && exit 1)
-    EOT
-  }
-}
 resource "null_resource" "run_pytest" {
   depends_on = [
-    null_resource.install_poetry_deps,
-    null_resource.check_pytest_deps
+    null_resource.install_python_deps,
   ]
   triggers = {
     always_run = timestamp()
@@ -42,9 +35,9 @@ resource "null_resource" "run_pytest" {
 
 data "local_file" "pytest_output" {
   depends_on = [null_resource.run_pytest]
-  filename   = "${path.module}/pytest.json"
+  filename   = "${local.log_folder}/pytest.json"
 }
 data "local_file" "pytest_log" {
   depends_on = [null_resource.run_pytest]
-  filename   = "${path.module}/pytest.log"
+  filename   = "${local.log_folder}/pytest.log"
 }

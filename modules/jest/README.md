@@ -35,7 +35,7 @@ No modules.
 |------|-------------|------|---------|
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | Environment variables for test runner | `map(string)` | `{}` |
 | <a name="input_framework"></a> [framework](#input\_framework) | Explicitly choose framework to run | `string` | `""` |
-| <a name="input_install_poetry_deps"></a> [install\_poetry\_deps](#input\_install\_poetry\_deps) | Install Python dependencies at runtime using Poetry if not already installed | `bool` | `false` |
+| <a name="input_install_python_deps"></a> [install\_python\_deps](#input\_install\_python\_deps) | Install Python dependencies at runtime using Poetry/pip if not already installed | `bool` | `false` |
 | <a name="input_junit_xml_file"></a> [junit\_xml\_file](#input\_junit\_xml\_file) | Path for junit xml output file | `string` | `"junit.xml"` |
 | <a name="input_use_poetry"></a> [use\_poetry](#input\_use\_poetry) | Use poetry run | `bool` | `false` |
 | <a name="input_working_dir"></a> [working\_dir](#input\_working\_dir) | Dir with tests | `string` | `"."` |
