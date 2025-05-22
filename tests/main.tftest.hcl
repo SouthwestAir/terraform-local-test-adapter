@@ -1,5 +1,5 @@
 test {
-  parallel = true
+  parallel = false
 }
 
 run "pytest" {
