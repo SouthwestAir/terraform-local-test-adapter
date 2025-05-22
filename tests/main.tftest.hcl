@@ -8,7 +8,8 @@ run "pytest" {
     source = "./examples/pytest"
   }
   variables {
-    use_poetry = true
+    use_poetry = false
+    install_python_deps = true
   }
   assert {
     condition     = length(module.this.passed_tests) == 1

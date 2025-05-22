@@ -13,7 +13,7 @@ variable "use_poetry" {
   default     = false
 }
 variable "install_python_deps" {
-  description = "Install Python dependencies at runtime using Poetry if not already installed"
+  description = "Install Python dependencies at runtime using Poetry/pip if not already installed"
   type        = bool
   default     = false
 }

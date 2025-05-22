@@ -9,7 +9,7 @@ resource "null_resource" "install_python_deps" {
   count = var.install_python_deps ? 1 : 0
 
   provisioner "local-exec" {
-    command     = "command -v poetry >/dev/null 2>&1 && poetry install || pip install -r requirements.txt"
+    command     = var.use_poetry ? "poetry install" : "pip install -r ${abspath(path.module)}/requirements.txt"
     working_dir = path.module
   }
 }
