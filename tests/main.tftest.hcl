@@ -17,7 +17,7 @@ run "pytest" {
 }
 
 run "pytest_install_deps" {
-  state_key = "pytest-2"
+  state_key = "pytest-1"
   module {
     source = "./examples/pytest"
   }
