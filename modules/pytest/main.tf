@@ -5,8 +5,8 @@ locals {
   pytest_cmd  = var.use_poetry ? "poetry run pytest" : "pytest"
 }
 
-resource "null_resource" "install_poetry_deps" {
-  count = var.install_poetry_deps ? 1 : 0
+resource "null_resource" "install_python_deps" {
+  count = var.install_python_deps ? 1 : 0
 
   provisioner "local-exec" {
     command     = "command -v poetry >/dev/null 2>&1 && poetry install || pip install -r requirements.txt"
@@ -16,7 +16,7 @@ resource "null_resource" "install_poetry_deps" {
 
 resource "null_resource" "run_pytest" {
   depends_on = [
-    null_resource.install_poetry_deps,
+    null_resource.install_python_deps,
   ]
   triggers = {
     always_run = timestamp()

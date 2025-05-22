@@ -5,19 +5,15 @@ module "this" {
   env_vars            = {}
   junit_xml_file      = "junit.xml"
   use_poetry          = var.use_poetry
-  install_poetry_deps = var.install_poetry_deps
+  install_python_deps = var.install_python_deps
 }
 variable "use_poetry" {
   type        = bool
   description = "Use poetry run"
   default     = false
 }
-variable "install_poetry_deps" {
+variable "install_python_deps" {
   description = "Install Python dependencies at runtime using Poetry if not already installed"
   type        = bool
   default     = false
-  validation {
-    condition     = var.install_poetry_deps ? var.use_poetry : true
-    error_message = "If install_poetry_deps is true than use poetry should also be true"
-  }
 }

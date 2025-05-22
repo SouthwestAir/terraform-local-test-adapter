@@ -23,13 +23,13 @@ run "pytest_install_deps" {
   }
   variables {
     use_poetry          = true
-    install_poetry_deps = true
+    install_python_deps = true
   }
 }
 run "pytest_failure" {
   variables {
     working_dir = "./tests/pytest_failure"
-    use_poetry          = true
+    use_poetry  = true
   }
   expect_failures = [
     check.failures
