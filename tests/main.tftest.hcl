@@ -8,7 +8,7 @@ run "pytest" {
     source = "./examples/pytest"
   }
   variables {
-    use_poetry = false
+    use_poetry          = false
     install_python_deps = true
   }
   assert {
