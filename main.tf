@@ -1,9 +1,11 @@
 module "pytest" {
-  count          = var.framework == "pytest" || length(fileset(var.working_dir, "test_*.py")) == 0 ? 0 : 1
-  source         = "./modules/pytest"
-  working_dir    = var.working_dir
-  env_vars       = var.env_vars
-  junit_xml_file = var.junit_xml_file
+  count               = var.framework == "pytest" || length(fileset(var.working_dir, "test_*.py")) == 0 ? 0 : 1
+  source              = "./modules/pytest"
+  working_dir         = var.working_dir
+  env_vars            = var.env_vars
+  junit_xml_file      = var.junit_xml_file
+  install_python_deps = var.install_python_deps
+  use_poetry          = var.use_poetry
 }
 
 module "jest" {

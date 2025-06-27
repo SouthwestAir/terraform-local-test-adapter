@@ -10,7 +10,7 @@ resource "null_resource" "install_python_deps" {
 
   provisioner "local-exec" {
     command     = var.use_poetry ? "poetry install" : "pip install -r ${abspath(path.module)}/requirements.txt"
-    working_dir = path.module
+    working_dir = abspath(var.working_dir)
   }
 }
 
