@@ -19,6 +19,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - name: Install Poetry
         uses: snok/install-poetry@v1
       - uses: hashicorp/setup-terraform@v1
@@ -33,3 +37,26 @@ jobs:
         if: success() || failure() # always run even if the previous step fails
         with:
           report_paths: tf_junit.xml
+
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    needs: terraform
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
