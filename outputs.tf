@@ -10,3 +10,7 @@ output "passed_tests" {
   description = "All passed tests"
   value       = try(module.jest[0], module.pytest[0], module.k6[0]).passed_tests
 }
+output "failure_summary" {
+  description = "Human-readable summary of test failures"
+  value       = try(module.jest[0], module.pytest[0], module.k6[0]).failure_summary
+}
