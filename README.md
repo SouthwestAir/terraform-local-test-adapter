@@ -68,6 +68,7 @@ No resources.
 | Name | Description |
 | ---- | ----------- |
 | <a name="output_failed_tests"></a> [failed\_tests](#output\_failed\_tests) | All failed tests |
+| <a name="output_failure_summary"></a> [failure\_summary](#output\_failure\_summary) | Human-readable summary of test failures |
 | <a name="output_log"></a> [log](#output\_log) | Log file contents |
 | <a name="output_passed_tests"></a> [passed\_tests](#output\_passed\_tests) | All passed tests |
 <!-- END_TF_DOCS -->
