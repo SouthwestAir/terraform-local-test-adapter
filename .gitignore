@@ -6,6 +6,7 @@
 *.log
 .general-resources
 .general-resources.mk
+.idea
 .python-version
 .venv/
 __pycache__

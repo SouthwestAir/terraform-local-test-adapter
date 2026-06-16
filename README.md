@@ -25,10 +25,10 @@ A Terraform module that provides a unified interface for running different test 
 ## Requirements
 
 | Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >1.10.0 |
-| <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.4.0 |
-| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.2.3 |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >1.9.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.0.0 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.0.0 |
 
 ## Providers
 
@@ -37,7 +37,7 @@ No providers.
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_jest"></a> [jest](#module\_jest) | ./modules/jest | n/a |
 | <a name="module_k6"></a> [k6](#module\_k6) | ./modules/k6 | n/a |
 | <a name="module_pytest"></a> [pytest](#module\_pytest) | ./modules/pytest | n/a |
@@ -49,7 +49,7 @@ No resources.
 ## Inputs
 
 | Name | Description | Type | Default |
-|------|-------------|------|---------|
+| ---- | ----------- | ---- | ------- |
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | Environment variables for test runner | `map(string)` | `{}` |
 | <a name="input_framework"></a> [framework](#input\_framework) | Explicitly choose framework to run | `string` | `""` |
 | <a name="input_install_python_deps"></a> [install\_python\_deps](#input\_install\_python\_deps) | Install Python dependencies at runtime using Poetry/pip if not already installed | `bool` | `false` |
@@ -60,7 +60,7 @@ No resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_failed_tests"></a> [failed\_tests](#output\_failed\_tests) | All failed tests |
 | <a name="output_log"></a> [log](#output\_log) | Log file contents |
 | <a name="output_passed_tests"></a> [passed\_tests](#output\_passed\_tests) | All passed tests |

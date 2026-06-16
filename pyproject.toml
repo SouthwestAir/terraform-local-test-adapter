@@ -18,7 +18,7 @@ readme = "README.md"
 repository = "https://github.com/SouthwestAir/terraform-x-adapter/"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.13"
 pytest = "^8.3.5"
 pytest-json-report = "^1.5.0"
 

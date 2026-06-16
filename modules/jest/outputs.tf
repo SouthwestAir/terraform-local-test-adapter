@@ -11,3 +11,11 @@ output "log" {
   description = "Jest log file contents"
   value       = data.local_file.jest_log.content
 }
+
+output "failure_summary" {
+  description = "Human-readable summary of all test failures"
+  value = join("\n\n", [
+    for t in jsondecode(local_file.jest_asserts.content) : "FAILED ${t.ancestorTitles} > ${t.title}\n${join("\n", t.failureMessages)}"
+    if t.status != "passed"
+  ])
+}

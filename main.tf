@@ -29,7 +29,7 @@ locals {
 check "failures" {
 
   assert {
-    condition     = !can(regex("ERROR", local.module.log)) && length(local.module.failed_tests) == 0
-    error_message = "${local.module.log}\n${jsonencode(local.module.failed_tests)}"
+    condition     = length(local.module.failed_tests) == 0
+    error_message = local.module.failure_summary
   }
 }

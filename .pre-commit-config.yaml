@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-json
       - id: check-merge-conflict
@@ -35,12 +35,12 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
   - repo: https://github.com/pappasam/toml-sort
-    rev: v0.23.1
+    rev: v0.24.4
     hooks:
       - id: toml-sort-fix
         exclude: (^poetry.lock$)
   - repo: https://github.com/ITProKyle/pre-commit-hook-yamlfmt
-    rev: v0.3.0
+    rev: v0.4.0
     hooks:
       - id: yamlfmt
         args: [--mapping, '2', --offset, '2', --sequence, '4']
@@ -56,17 +56,17 @@ repos:
   #         - mdformat-tables
   #         - mdformat-toc
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.41.0
+    rev: v0.48.0
     hooks:
       - id: markdownlint
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.90.0
+    rev: v1.106.0
     hooks:
       - id: terraform_fmt
         args:
           - --args=-write=true -recursive
   - repo: https://github.com/terraform-docs/terraform-docs
-    rev: v0.17.0
+    rev: v0.24.0
     hooks:
       - id: terraform-docs-go
         args: [./]

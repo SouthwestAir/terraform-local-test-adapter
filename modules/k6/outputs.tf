@@ -11,3 +11,8 @@ output "passed_tests" {
   value       = []
   description = "Not Applicable"
 }
+
+output "failure_summary" {
+  description = "Human-readable summary of errors"
+  value       = strcontains(data.local_file.k6_log.content, "error") ? "ERROR: k6 reported errors. See log output." : ""
+}
