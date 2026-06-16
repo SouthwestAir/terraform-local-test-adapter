@@ -21,6 +21,12 @@ A Terraform module that provides a unified interface for running different test 
 [Diagram GitHub Link](https://raw.githubusercontent.com/SouthwestAir/terraform-local-test-adapter/main/docs/source/diagram.png)
 ![x](https://raw.githubusercontent.com/SouthwestAir/terraform-local-test-adapter/main/docs/source/diagram.png)
 
+## Failure Output
+
+When tests fail, the error message surfaces the test name and failure details directly in `terraform test` output — no raw JSON or log noise.
+
+![Failure example](https://raw.githubusercontent.com/SouthwestAir/terraform-local-test-adapter/main/docs/source/fail_example.png)
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
