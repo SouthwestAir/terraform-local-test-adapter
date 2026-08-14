@@ -27,6 +27,15 @@ run "pytest_install_deps" {
     install_python_deps = true
   }
 }
+run "pytest_uv" {
+  state_key = "pytest-1"
+
+  variables {
+    use_uv          = true
+    install_python_deps = true
+    working_dir = "./tests/uv"
+  }
+}
 run "pytest_failure" {
   variables {
     working_dir         = "./tests/pytest_failure"

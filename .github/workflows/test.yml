@@ -25,6 +25,8 @@ jobs:
           python-version: '3.13'
       - name: Install Poetry
         uses: snok/install-poetry@v1
+      - name: Install UV
+        uses: step-security/setup-uv@v8
       - uses: hashicorp/setup-terraform@v1
 
       - name: terraform test

@@ -6,6 +6,7 @@ module "pytest" {
   junit_xml_file      = var.junit_xml_file
   install_python_deps = var.install_python_deps
   use_poetry          = var.use_poetry
+  use_uv              = var.use_uv
 }
 
 module "jest" {

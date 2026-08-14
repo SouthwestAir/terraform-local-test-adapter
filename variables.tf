@@ -29,8 +29,13 @@ variable "use_poetry" {
   description = "Use poetry run"
   default     = false
 }
+variable "use_uv" {
+  type        = bool
+  description = "Use uv run"
+  default     = false
+}
 variable "install_python_deps" {
-  description = "Install Python dependencies at runtime using Poetry/pip if not already installed"
+  description = "Install Python dependencies at runtime using Poetry/pip/uv if not already installed"
   type        = bool
   default     = false
 }
