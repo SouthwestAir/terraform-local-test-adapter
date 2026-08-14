@@ -10,8 +10,11 @@ from datetime import date
 from enum import StrEnum
 from pathlib import Path
 
-PYPROJECT_TOML = tomllib.loads((Path(__file__).parent.parent.parent / "pyproject.toml").read_text())
+PYPROJECT_TOML = tomllib.loads(
+    (Path(__file__).parent.parent.parent / "pyproject.toml").read_text()
+)
 """Read in the contents of ``../../pyproject.toml`` to reuse it's values."""
+
 
 class SwaColor(StrEnum):
     """Southwest Airlines brand colors.
@@ -51,7 +54,9 @@ templates_path = ["_templates"]
 
 # [pygments](https://pygments.org/) is used for syntax highlighting.
 # It offers many styles, found here: https://pygments.org/styles/
-pygments_dark_style = "one-dark"  # syntax highlighting style; this is actually from the furo theme
+pygments_dark_style = (
+    "one-dark"  # syntax highlighting style; this is actually from the furo theme
+)
 # `pygments_dark_style` is actually contributed by the furo theme but I place it here to have it
 #   set alongside `pygments_style` (from Sphinx).
 pygments_style = "one-dark"  # syntax highlighting style
@@ -62,7 +67,7 @@ source_suffix = {
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-html_use_opensearch = ''
+html_use_opensearch = ""
 html_codeblock_linenos_style = "inline"
 html_css_files = [  # files relative to `html_static_path` OR public URLs
     # These are being added for the footers I'm adding in `html_theme_options`.
