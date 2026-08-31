@@ -2,6 +2,10 @@ output "log" {
   value       = data.local_file.k6_log.content
   description = "K6 log"
 }
+output "log_file" {
+  value       = data.local_file.k6_log.filename
+  description = "K6 log file"
+}
 output "failed_tests" {
   value       = strcontains(data.local_file.k6_log.content, "error") ? [1] : []
   description = "Any errors"

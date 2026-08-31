@@ -12,6 +12,11 @@ output "log" {
   value       = data.local_file.jest_log.content
 }
 
+output "log_file" {
+  description = "Jest log file path"
+  value       = data.local_file.jest_log.filename
+}
+
 output "failure_summary" {
   description = "Human-readable summary of all test failures"
   value = join("\n\n", [

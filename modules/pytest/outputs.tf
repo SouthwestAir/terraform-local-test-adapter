@@ -16,7 +16,12 @@ output "log" {
 
   value = data.local_file.pytest_log.content
 }
+output "log_file" {
+  description = "Pytest log file path"
+  depends_on  = [null_resource.run_pytest]
 
+  value = data.local_file.pytest_log.filename
+}
 locals {
   _parsed   = jsondecode(data.local_file.pytest_output.content)
   _errors   = [for c in local._parsed.collectors : "ERROR ${c.nodeid}\n${try(c.longrepr, "")}" if c.outcome == "error"]

@@ -28,9 +28,20 @@ locals {
   module = try(module.pytest[0], module.k6[0], module.jest[0])
 }
 check "failures" {
-
   assert {
     condition     = length(local.module.failed_tests) == 0
-    error_message = local.module.failure_summary
+    error_message = <<EOT
+╔════════════════════════════════════════════════════════════════╗
+║                    🔴 TEST FAILURES                            ║
+╚════════════════════════════════════════════════════════════════╝
+
+${local.module.failure_summary}
+
+Summary:
+ Failed Tests:  ${length(local.module.failed_tests)}
+ Passed Tests:  ${length(local.module.passed_tests)}
+
+See log output file for details ${local.module.log_file}
+EOT
   }
 }

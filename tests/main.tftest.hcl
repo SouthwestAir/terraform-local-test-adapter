@@ -1,5 +1,5 @@
 test {
-  parallel = false
+  parallel = true
 }
 
 run "pytest" {
@@ -28,15 +28,16 @@ run "pytest_install_deps" {
   }
 }
 run "pytest_uv" {
-  state_key = "pytest-1"
+  state_key = "pytest-uv-1"
 
   variables {
-    use_uv          = true
+    use_uv              = true
     install_python_deps = true
-    working_dir = "./tests/uv"
+    working_dir         = "./tests/uv"
   }
 }
 run "pytest_failure" {
+  state_key = "pytest-failure-1"
   variables {
     working_dir         = "./tests/pytest_failure"
     use_poetry          = true
