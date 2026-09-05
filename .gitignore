@@ -1,5 +1,6 @@
 **.terraform.lock.hcl
 **.terraform/
+tf_junit.xml
 **.tool-versions
 **plan-checkov.json
 **plan.out
