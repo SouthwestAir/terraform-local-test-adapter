@@ -1,20 +1,21 @@
 # Terraform Test Runner Adapter
 
-A Terraform module that provides a unified interface for running different test frameworks within Terraform test.
+A Terraform module that provides a unified interface for running different test frameworks within `terraform test`.
 
 ## Supported Test Frameworks
 
-- Jest (JavaScript/TypeScript) 🃏
-- Pytest (Python) 🐍
-- k6 (Performance Testing) ⏩
+- Jest (JavaScript/TypeScript)
+- Pytest (Python)
+- k6 (Performance Testing) [alpha]
 
 [See examples](https://github.com/SouthwestAir/terraform-local-test-adapter/tree/main/examples)
 
 ## Features
 
-- Supports pytest, jest, and k6 test execution. 🛠️
-- Provides structured test results as Terraform outputs. 🏢
-- Designed for use within terraform test to enable infrastructure integration testing. 🏗️  🔬
+- Supports pytest, jest, and k6 test execution.
+- Provides structured test results as Terraform outputs.
+- Designed for use within `terraform test` to enable infrastructure integration testing.
+- Optional runtime dependency installation via pip, Poetry, or uv.
 
 ## How it works
 
@@ -26,6 +27,97 @@ A Terraform module that provides a unified interface for running different test 
 When tests fail, the error message surfaces the test name and failure details directly in `terraform test` output — no raw JSON or log noise.
 
 ![Failure example](https://raw.githubusercontent.com/SouthwestAir/terraform-local-test-adapter/main/docs/source/fail_example.png)
+
+## Usage
+
+### Basic pytest (pre-installed dependencies)
+
+```hcl
+module "tests" {
+  source = "github.com/SouthwestAir/terraform-local-test-adapter"
+
+  working_dir    = path.module
+  junit_xml_file = "junit.xml"
+}
+```
+
+### Pytest with uv
+
+Uses `uv run pytest` and optionally runs `uv sync --all-groups` before the test run. Requires a `pyproject.toml` and `uv.lock` in `working_dir`.
+
+```hcl
+module "tests" {
+  source = "github.com/SouthwestAir/terraform-local-test-adapter"
+
+  working_dir         = path.module
+  use_uv              = true
+  install_python_deps = true
+  junit_xml_file      = "junit.xml"
+}
+```
+
+### Pytest with Poetry
+
+```hcl
+module "tests" {
+  source = "github.com/SouthwestAir/terraform-local-test-adapter"
+
+  working_dir         = path.module
+  use_poetry          = true
+  install_python_deps = true
+  junit_xml_file      = "junit.xml"
+}
+```
+
+### Jest
+
+```hcl
+module "tests" {
+  source = "github.com/SouthwestAir/terraform-local-test-adapter"
+
+  working_dir    = path.module
+  junit_xml_file = "junit.xml"
+}
+```
+
+### k6
+
+```hcl
+module "tests" {
+  source = "github.com/SouthwestAir/terraform-local-test-adapter"
+
+  working_dir = path.module
+  env_vars = {
+    AWS_REGION = "us-east-1"
+  }
+}
+```
+
+### Passing environment variables
+
+```hcl
+module "tests" {
+  source = "github.com/SouthwestAir/terraform-local-test-adapter"
+
+  working_dir = path.module
+  env_vars = {
+    API_URL    = "https://my-api.example.com"
+    AWS_REGION = "us-east-1"
+  }
+}
+```
+
+## Dependency Installation
+
+Set `install_python_deps = true` to have the module install Python dependencies before running tests.
+
+| Tool | Behavior |
+|------|----------|
+| Default (pip) | Creates a `.venv` in `working_dir` and installs from `requirements.txt` |
+| `use_poetry = true` | Runs `poetry install` in `working_dir` |
+| `use_uv = true` | Runs `uv sync --all-groups` in `working_dir` (requires `pyproject.toml` + `uv.lock`) |
+
+`use_uv` and `use_poetry` are mutually exclusive.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

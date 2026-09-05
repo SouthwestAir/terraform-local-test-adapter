@@ -30,7 +30,7 @@ TEST_ARTIFACTS := pytest.json pytest.log jest.json jest.log junit.xml
 # Remove generated test report/log files from anywhere in the repo
 clean-test-artifacts: ## delete pytest/jest/junit report & log files recursively
 	@find . \( -path ./.git -o -path ./.venv -o -path ./node_modules -o -path ./.terraform \) -prune -o \
-		-type f \( $(foreach f,$(TEST_ARTIFACTS),-name $(f) -o) -false \) -delete
+		-type f \( $(foreach f,$(TEST_ARTIFACTS),-name $(f) -o) -false \) -exec rm -f {} +
 	@echo "Removed test artifacts: $(TEST_ARTIFACTS)"
 
 # Run terraform test after purging stale artifacts
